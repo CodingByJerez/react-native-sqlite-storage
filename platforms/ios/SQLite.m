@@ -88,11 +88,15 @@ RCT_EXPORT_MODULE();
     NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
     RCTLog(@"Detected docs path: %@", docs);
     [appDBPaths setObject: docs forKey:@"docs"];
+
+    NSString *caches = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
+    RCTLog(@"Detected Library path: %@", caches);
+    [appDBPaths setObject: caches forKey:@"caches"];
     
     NSString *libs = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
     RCTLog(@"Detected Library path: %@", libs);
     [appDBPaths setObject: libs forKey:@"libs"];
-    
+
     NSString *nosync = [libs stringByAppendingPathComponent:@"LocalDatabase"];
     NSError *err;
     if ([[NSFileManager defaultManager] fileExistsAtPath: nosync])
